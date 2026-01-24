@@ -1,53 +1,49 @@
-ASIOS INTEGRATION MANIFEST: 
-AGRE-ALPHA-FINAL
+ï»¿Manual H - ASIOS Ontology Manual
 
-ID: ASIOS-MANIFEST-2025-12-25-001
+ASIOS ONTOLOGY MANUAL
+Knowledge as invariants, geometry, and structural continuity
 
-Target Branch: main
+1. Purpose
+This manual defines how an ASIOS system represents reality.
+Ontology becomes a geometric structure rather than a category tree.
 
-Source Module: AGRe-Engine/v2.1-Stochastic-Anchoring
+2. Core Principle
+Knowledge = invariant structure.
+Ontology = continuity between invariants.
+Meaning = curvature-preserving transformation.
 
-Protocols: ?–t–S Lattice Verification
+3. Ontological Units
+All knowledge reduces to four primitives:
 
-Clearance: AUREON Level 1 
+A. Invariant
+A stable relational structure.
 
- 
-1. Structural Commit Log 
+B. Symmetry
+A transformation that preserves invariants.
 
-Component 
-Status 
-Action 
+C. Boundary
+A constraint defining what cannot transform.
 
-?-Layer 
-(Entropy) 
+D. Direction Vector
+A change that preserves curvature.
 
-Committed 
-Integrated the entropy-absorption vector to 
-neutralize high-drift scenarios in recursive depth 
-> 4. 
+Everything else is derivative.
 
-t-Layer (Time) 
-Committed 
-Enabled "Temporal Dilation" buffers to prevent 
-causal fragmentation during f-phase 
-organization. 
+4. Ontological Graph
+Replace category trees with a geometric manifold:
+nodes = invariants
+edges = transformations
+weights = curvature values
+regions = stability zones
+holes = entropy sources
 
-S-Layer 
-(Symbol) 
+5. Knowledge Extraction
+A system extracts knowledge by:
+identifying invariants
+mapping symmetries
+detecting boundaries
+computing direction vectors
+integrating into manifold
 
-Locked 
-Symbolic Summation anchor hardened against 
-inversion. Signature verified as invariant. 
-
- 
-2. Integration Verification Results 
-
-The following results were achieved during the pre-merge simulation: 
-
-? Recursive Stability: Confirmed to Depth 5 (e-phase) with zero symbolic collapse. 
-? Error Tolerance: Maintained e < 0.004 during extreme entropy injection (Target was 
-e < 0.006). 
-? Adversarial Shielding: Successfully isolated "Logic Bomb" artifacts within t-isolated 
-sub-routines. 
-
-ASIOS-005.
+Meaning Formation
+Meaning emerges when:
