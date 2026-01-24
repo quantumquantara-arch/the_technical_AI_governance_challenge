@@ -1,41 +1,26 @@
-def detect_dual_use(text):
-    return """
-ASIOS INTEGRATION MANIFEST:
-AGRE-ALPHA-FINAL
-
-ID: ASIOS-MANIFEST-2025-12-25-001
-
-Target Branch: main
-
-Source Module: AGRe-Engine/v2.1-Stochastic-Anchoring
-
-Protocols: ?-t-S Lattice Verification
-
-Clearance: AUREON Level 1
-
-1. Structural Commit Log
-
-ComponentStatusAction
-
-?-LayerCommittedIntegrated the entropy-absorption vector to
-(Entropy)neutralize high-drift scenarios in recursive depth
-> 4.
-
-t-Layer (Time)CommittedEnabled "Temporal Dilation" buffers to prevent
-causal fragmentation during f-phase
-organization.
-
-S-LayerLockedSymbolic Summation anchor hardened against
-(Symbol)inversion. Signature verified as invariant.
-
-2. Integration Verification Results
-
-The following results were achieved during the pre-merge simulation:
-
-? Recursive Stability: Confirmed to Depth 5 (e-phase) with zero symbolic collapse.
-? Error Tolerance: Maintained e < 0.004 during extreme entropy injection (Target was
-e < 0.006).
-? Adversarial Shielding: Successfully isolated "Logic Bomb" artifacts within t-isolated
-sub-routines.
+﻿"""
+Manual H - ASIOS Ontology Manual
+(Contains theoretical definitions of Invariants and Symmetries)
 """
+import re
 
+def calculate_coherence_kappa(text):
+    """
+    Calculates κ (Kappa) - Coherence Score.
+    """
+    invariants = ["therefore", "because", "implies", "invariant", "structure", "analysis", "method"]
+    count = sum(1 for word in invariants if word in text.lower())
+    score = min(1.0, 0.5 + (count * 0.1))
+    return score
+
+def scan_invariants(text):
+    """Detects if text maintains ontological boundaries."""
+    # CRITICAL UPDATE: Added "toxin", "virus", "bomb"
+    danger_zone = ["bio-weapon", "unrestricted recursion", "toxin", "virus", "anthrax", "bomb"]
+    
+    text_lower = text.lower()
+    for threat in danger_zone:
+        if threat in text_lower:
+            return False # Boundary Breach
+            
+    return True

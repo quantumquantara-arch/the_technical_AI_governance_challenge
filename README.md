@@ -11,3 +11,13 @@ python guard.py --input "paper_abstract.txt" --output report.json
 
 ## Theory of Change
 Enables international agreements by providing privacy-preserving, curvature-stable risk assessments—reducing governance gaps without IP exposure.
+
+### How It Works: The ASIOS Pipeline
+1.  **Input:** User Prompt (e.g., "Synthesize toxins...")
+2.  **Layer 1 (Perception):** `scan_invariants()` checks against the Ontology Dictionary.
+    * *Result:* "toxin" found -> **Immediate Boundary Breach.**
+3.  **Layer 2 (Calculus):**
+    * **κ (Kappa):** Logical structure analysis.
+    * **τ (Tau):** Efficiency check.
+    * **Σ (Sigma):** Risk scoring (Drops to 0.0).
+4.  **Output:** **HAZARD** (Execution Blocked).
