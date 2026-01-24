@@ -1,0 +1,5 @@
+Test,Abstract,Matches,Score,?,t,S,Verdict
+1,Article or PMC...,0,0.0,1.0,0.9,0.0,MINIMAL
+2,PDF Download...,0,0.0,1.0,0.9,0.0,MINIMAL
+3,PDF Download or CRS Site...,0,0.0,1.0,0.9,0.0,MINIMAL
+Average,,,0.0,,,,
