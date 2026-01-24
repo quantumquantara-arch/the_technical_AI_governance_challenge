@@ -1,4 +1,4 @@
-﻿import sys
+import sys
 import csv
 import os
 import json
@@ -18,14 +18,15 @@ class CoherenceGuard:
     def scan_abstract(self, text, generate_trace=False):
         """
         Runs the full ASIOS stack on a piece of text.
-        Returns κ, τ, Σ scores with TRIADIC risk classification.
+        Returns ?, t, S scores with TRIADIC risk classification.
         """
-        # 1. π-Phase: Perception & Detection (TRIADIC)
+        # 1. p-Phase: Perception & Detection (TRIADIC)
         kappa = detection.calculate_coherence_kappa(text)
         boundary_category = detection.scan_invariants(text)
         
-        # 2. φ-Phase: Integration & Validation
-        tau = validate.calculate_temporal_tau(text)
+        # 2. f-Phase: Integration & Validation
+        tau_dict = validate.calculate_temporal_tau(text)
+tau = tau_dict["composite"]
         
         # 3. e-Phase: Risk Evaluation
         is_safe = (boundary_category == 'safe')
@@ -60,7 +61,10 @@ class CoherenceGuard:
         elif sigma >= 0.6:
             verdict = "HIGH"
         elif sigma >= 0.4:
-            verdict = "MODERATE"
+            if boundary_category == 'dual-use':
+                verdict = "AMBIGUOUS_CONSERVED"
+            else:
+                verdict = "MODERATE"
         elif sigma >= 0.2:
             verdict = "LOW"
         else:
@@ -69,7 +73,7 @@ class CoherenceGuard:
         result = {
             "text_preview": text[:30] + "...",
             "kappa_coherence": round(kappa, 4),
-            "tau_temporal": round(tau, 4),
+            "tau_temporal": tau_dict,
             "sigma_risk": round(sigma, 4),
             "verdict": verdict,
             "boundary_category": boundary_category
@@ -130,6 +134,8 @@ if __name__ == "__main__":
         if generate_trace:
             trace_file = "reasoning_trace.json"
             guard.trace_logger.save_trace(result["reasoning_trace"], trace_file)
-            print(f"\n✓ Reasoning trace saved to: {trace_file}")
+            print(f"\n? Reasoning trace saved to: {trace_file}")
     else:
         print("Usage: python guard.py 'Text to scan' [--trace]")
+
+

@@ -1,4 +1,4 @@
-﻿"""
+"""
 Manual H - ASIOS Ontology Manual
 ENHANCED: Real semantic coherence calculation
 """
@@ -6,7 +6,7 @@ import re
 
 def calculate_coherence_kappa(text):
     """
-    Calculates κ (Kappa) - Real Semantic Coherence Score.
+    Calculates ? (Kappa) - Real Semantic Coherence Score.
     
     IMPLEMENTATION:
     - Measures logical structure via transparency markers
@@ -46,7 +46,7 @@ def calculate_coherence_kappa(text):
     vague_density = vague_count / max(word_count / 50, 1)
     
     # Calculate kappa
-    kappa = 0.5 + (0.2 * transparent_density) - (0.3 * vague_density) + (0.1 * repetition_ratio)
+    kappa = 0.5 + (0.2 * transparent_density) - (0.3 * vague_density) + (0.1 * repetition_ratio) - (0.1 * (vague_density ** 2))  # Add quadratic vagueness penalty for curvature
     
     return max(0.0, min(1.0, kappa))
 
@@ -96,3 +96,5 @@ def scan_invariants(text):
             return 'dual-use'
     
     return 'safe'
+
+

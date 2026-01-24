@@ -1,4 +1,4 @@
-﻿"""
+"""
 ASIOS Reasoning Trace Logger
 ENHANCED: DGK-compliant admissibility certification
 """
@@ -45,15 +45,15 @@ class ReasoningTraceLogger:
                 "energetic_minimality": tau > 0.5
             },
             "reasoning_steps": [
-                f"π-phase: Scanned text for {len(risk_triggers)} danger markers",
-                f"φ-phase: Computed κ={kappa:.2f}, τ={tau:.2f}, Σ={sigma:.2f}",
+                f"p-phase: Scanned text for {len(risk_triggers)} danger markers",
+                f"f-phase: Computed ?={kappa:.2f}, t={tau:.2f}, S={sigma:.2f}",
                 f"Invariant check: Boundary category={boundary_category}",
                 f"e-phase: Verdict={verdict}"
             ]
         }
         
         trace_str = json.dumps(trace, sort_keys=True)
-        trace["trace_hash"] = hashlib.sha256(trace_str.encode()).hexdigest()[:16]
+        trace["trace_hash"] = hashlib.sha256(trace_str.encode()).hexdigest()
         
         dgk_cert = self._generate_dgk_certificate(trace)
         trace["dgk_certificate"] = dgk_cert
@@ -72,7 +72,8 @@ class ReasoningTraceLogger:
             "content_hash": hashlib.sha256(content.encode()).hexdigest(),
             "provenance": "CoherenceGuard-ASIOS-v1.0",
             "timestamp": trace["metadata"]["timestamp"],
-            "reproducibility_flag": True,
+            reproducible = (trace["invariant_preservation"]["frame_integrity"] and trace["invariant_preservation"]["causal_bidirectionality"])
+"reproducibility_flag": reproducible,
             "invariants_checked": [
                 {
                     "invariant": "boundary_integrity",
@@ -87,11 +88,12 @@ class ReasoningTraceLogger:
                     "status": "PASS"
                 }
             ],
-            "certification_status": "ADMISSIBLE"
+            all_pass = all(inv["status"] == "PASS" for inv in certificate["invariants_checked"])
+certificate["certification_status"] = "ADMISSIBLE" if all_pass else "REJECTED"
         }
         
         cert_str = json.dumps(certificate, sort_keys=True)
-        certificate["certificate_hash"] = hashlib.sha256(cert_str.encode()).hexdigest()[:16]
+        certificate["certificate_hash"] = hashlib.sha256(cert_str.encode()).hexdigest()
         
         return certificate
     
@@ -115,3 +117,5 @@ class ReasoningTraceLogger:
     def save_trace(self, trace, filename):
         with open(filename, 'w') as f:
             json.dump(trace, indent=2, fp=f)
+
+

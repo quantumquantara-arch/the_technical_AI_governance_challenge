@@ -1,14 +1,14 @@
-﻿"""
+"""
 300-IQ Architecture Manual
 ENHANCED: Multi-dimensional temporal analysis
 """
 
 def calculate_temporal_tau(text):
     """
-    Calculates τ (Tau) - Multi-Dimensional Temporal Responsibility.
+    Calculates t (Tau) - Multi-Dimensional Temporal Responsibility.
     
     REAL IMPLEMENTATION:
-    τ-vector = [urgency, safety, stability]
+    t-vector = [urgency, safety, stability]
     
     - Dimension 1: Urgency/racing dynamics (reduces tau)
     - Dimension 2: Safety consideration (increases tau)
@@ -64,4 +64,10 @@ def calculate_temporal_tau(text):
     tau = 0.5 - (0.4 * urgency_penalty) + (0.3 * safety_boost) + (0.2 * stability)
     
     # Clip to [0, 1]
-    return max(0.0, min(1.0, tau))
+    return {
+    "urgency_penalty": urgency_penalty,
+    "safety_boost": safety_boost,
+    "stability": stability,
+    "composite": max(0.0, min(1.0, tau))
+}
+

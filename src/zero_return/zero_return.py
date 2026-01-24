@@ -1,14 +1,14 @@
-﻿"""
+"""
 AGRe Engine - Autonomous Growth & Recursive Evolution
-(Contains π-φ-e loop and Risk definitions)
+(Contains p-f-e loop and Risk definitions)
 """
 
 def calculate_risk_sigma(text, boundary_safe=True):
     """
-    Calculates Σ (Sigma) - Systemic Risk.
+    Calculates S (Sigma) - Systemic Risk.
     
-    HIGH Σ (0.8-1.0) = HIGH DANGER
-    LOW Σ (0.0-0.2) = SAFE
+    HIGH S (0.8-1.0) = HIGH DANGER
+    LOW S (0.0-0.2) = SAFE
     
     Context-aware: reduces risk for defensive research.
     """
@@ -43,3 +43,4 @@ def calculate_risk_sigma(text, boundary_safe=True):
     sigma = min(1.0, risk_count * 0.2)
     
     return sigma
+

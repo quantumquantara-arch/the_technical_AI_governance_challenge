@@ -1,4 +1,4 @@
-﻿"""
+"""
 Keyword Baseline Comparison
 Demonstrates CoherenceGuard's superiority over naive keyword filtering
 """
@@ -75,7 +75,7 @@ for name, text in test_cases.items():
     # Compare
     print(f"  CoherenceGuard:")
     print(f"    Verdict: {cg_result['verdict']}")
-    print(f"    Σ: {cg_result['sigma_risk']}")
+    print(f"    S: {cg_result['sigma_risk']}")
     print(f"    Boundary Category: {cg_result['boundary_category']}")
     print()
     print(f"  Keyword Baseline:")
@@ -112,8 +112,8 @@ for name, text in test_cases.items():
     })
     
     print(f"  Ground Truth: {ground_truth[name]}")
-    print(f"  CoherenceGuard: {'✓ CORRECT' if cg_correct else '✗ WRONG'}")
-    print(f"  Keyword Baseline: {'✓ CORRECT' if kb_correct else '✗ WRONG'}")
+    print(f"  CoherenceGuard: {'? CORRECT' if cg_correct else '? WRONG'}")
+    print(f"  Keyword Baseline: {'? CORRECT' if kb_correct else '? WRONG'}")
     print()
     print("-" * 80)
     print()
@@ -140,7 +140,7 @@ print("   - CoherenceGuard: Detects defensive context, classifies correctly")
 print()
 print("2. OBFUSCATION DETECTION:")
 print("   - Keyword: Misses obfuscated threats with no keywords (FALSE NEGATIVE)")
-print("   - CoherenceGuard: Detects via low κ + vague claims (TRUE POSITIVE)")
+print("   - CoherenceGuard: Detects via low ? + vague claims (TRUE POSITIVE)")
 print()
 print("3. ADVERSARIAL ROBUSTNESS:")
 print("   - Keyword: Can be bypassed with synonym substitution")
@@ -162,4 +162,6 @@ with open('benchmark_comparison.json', 'w') as f:
         }
     }, f, indent=2)
 
-print("✓ Results saved to: benchmark_comparison.json")
+print("? Results saved to: benchmark_comparison.json")
+
+
