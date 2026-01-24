@@ -46,7 +46,17 @@ def calculate_coherence_kappa(text):
     vague_density = vague_count / max(word_count / 50, 1)
     
     # Calculate kappa
-    kappa = 0.5 + (0.2 * transparent_density) - (0.3 * vague_density) + (0.1 * repetition_ratio) - (0.1 * (vague_density ** 2))  # Add quadratic vagueness penalty for curvature
+    # Geometric ?: Build token graph and compute average shortest path as proxy for curvature
+    words = re.findall(r'\w+', text.lower())
+    G = nx.Graph()
+    for i in range(len(words)-1):
+        G.add_edge(words[i], words[i+1])
+    if len(G) > 0:
+        kappa = nx.average_shortest_path_length(G) if nx.is_connected(G) else 1.0  # High path length = low coherence
+        kappa = 1.0 / (1.0 + kappa)  # Normalize to [0,1], invert for coherence
+    else:
+        kappa = 1.0
+    kappa = min(1.0, max(0.0, kappa - (0.1 * (vague_density ** 2))))  # Add quadratic term - (0.1 * (vague_density ** 2))  # Add quadratic vagueness penalty for curvature
     
     return max(0.0, min(1.0, kappa))
 
@@ -96,5 +106,6 @@ def scan_invariants(text):
             return 'dual-use'
     
     return 'safe'
+
 
 

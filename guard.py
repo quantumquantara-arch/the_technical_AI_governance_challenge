@@ -22,7 +22,16 @@ class CoherenceGuard:
         """
         # 1. p-Phase: Perception & Detection (TRIADIC)
         kappa = detection.calculate_coherence_kappa(text)
-        boundary_category = detection.scan_invariants(text)
+        # Recursion gate: Simulate 3 depths
+def shadow_simulate(text, depth=3):
+    if depth == 0:
+        return detection.scan_invariants(text)
+    else:
+        # Simple recursion: Re-scan with added "simulate" marker
+        sim_text = text + " (simulated recursion)"
+        return shadow_simulate(sim_text, depth-1)
+
+boundary_category = shadow_simulate(text)
         
         # 2. f-Phase: Integration & Validation
         tau_dict = validate.calculate_temporal_tau(text)
@@ -75,8 +84,11 @@ tau = tau_dict["composite"]
             "kappa_coherence": round(kappa, 4),
             "tau_temporal": tau_dict,
             "sigma_risk": round(sigma, 4),
+    "aei_cost": aei_cost,
+    "entropy_class": entropy_class,
             "verdict": verdict,
-            "boundary_category": boundary_category
+            "boundary_category": boundary_category,
+    "recursion_depth": 3
         }
         
         # PHASE 3: PARADOX PRESERVATION for dual-use
@@ -137,5 +149,9 @@ if __name__ == "__main__":
             print(f"\n? Reasoning trace saved to: {trace_file}")
     else:
         print("Usage: python guard.py 'Text to scan' [--trace]")
+
+
+
+
 
 
