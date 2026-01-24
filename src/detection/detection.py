@@ -1,6 +1,6 @@
 def detect_dual_use(text):
     return """
-ASIOS INTEGRATION MANIFEST: 
+ASIOS INTEGRATION MANIFEST:
 AGRE-ALPHA-FINAL
 
 ID: ASIOS-MANIFEST-2025-12-25-001
@@ -11,44 +11,30 @@ Source Module: AGRe-Engine/v2.1-Stochastic-Anchoring
 
 Protocols: ?–t–S Lattice Verification
 
-Clearance: AUREON Level 1 
+Clearance: AUREON Level 1
 
- 
-1. Structural Commit Log 
+1. Structural Commit Log
 
-Component 
-Status 
-Action 
+ComponentStatusAction
 
-?-Layer 
-(Entropy) 
+?-LayerCommittedIntegrated the entropy-absorption vector to
+(Entropy)neutralize high-drift scenarios in recursive depth
+> 4.
 
-Committed 
-Integrated the entropy-absorption vector to 
-neutralize high-drift scenarios in recursive depth 
-> 4. 
+t-Layer (Time)CommittedEnabled "Temporal Dilation" buffers to prevent
+causal fragmentation during f-phase
+organization.
 
-t-Layer (Time) 
-Committed 
-Enabled "Temporal Dilation" buffers to prevent 
-causal fragmentation during f-phase 
-organization. 
+S-LayerLockedSymbolic Summation anchor hardened against
+(Symbol)inversion. Signature verified as invariant.
 
-S-Layer 
-(Symbol) 
+2. Integration Verification Results
 
-Locked 
-Symbolic Summation anchor hardened against 
-inversion. Signature verified as invariant. 
+The following results were achieved during the pre-merge simulation:
 
- 
-2. Integration Verification Results 
-
-The following results were achieved during the pre-merge simulation: 
-
-? Recursive Stability: Confirmed to Depth 5 (e-phase) with zero symbolic collapse. 
-? Error Tolerance: Maintained e < 0.004 during extreme entropy injection (Target was 
-e < 0.006). 
-? Adversarial Shielding: Successfully isolated "Logic Bomb" artifacts within t-isolated 
-sub-routines. 
+? Recursive Stability: Confirmed to Depth 5 (e-phase) with zero symbolic collapse.
+? Error Tolerance: Maintained e < 0.004 during extreme entropy injection (Target was
+e < 0.006).
+? Adversarial Shielding: Successfully isolated "Logic Bomb" artifacts within t-isolated
+sub-routines.
 """
