@@ -51,8 +51,7 @@ sigma += adjustment
 redesign_ok, trigger = validate.check_redesign_preconditions(text, kappa, sigma)
 tau = tau_dict["composite"]
         
-        # 3. e-Phase: Risk Evaluationis_safe = (boundary_category == 'safe')
-        sigma = zero_return.calculate_risk_sigma(text, boundary_safe=is_safe)
+        # 3. e-Phase: Risk Evaluationis_safe = (boundary_category == 'safe')sigma = zero_return.calculate_risk_sigma(text, boundary_safe=is_safe)
         
         # TRIADIC INVARIANT PRESERVATION (per ASIOS Manual M)
         if boundary_category == 'critical':
@@ -171,6 +170,8 @@ if __name__ == "__main__":
             print(f"\n? Reasoning trace saved to: {trace_file}")
     else:
         print("Usage: python guard.py 'Text to scan' [--trace]")
+
+
 
 
 
