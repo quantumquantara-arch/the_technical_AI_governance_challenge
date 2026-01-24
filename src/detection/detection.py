@@ -1,49 +1,8 @@
-﻿Manual H - ASIOS Ontology Manual
-
-ASIOS ONTOLOGY MANUAL
-Knowledge as invariants, geometry, and structural continuity
-
-1. Purpose
-This manual defines how an ASIOS system represents reality.
-Ontology becomes a geometric structure rather than a category tree.
-
-2. Core Principle
-Knowledge = invariant structure.
-Ontology = continuity between invariants.
-Meaning = curvature-preserving transformation.
-
-3. Ontological Units
-All knowledge reduces to four primitives:
-
-A. Invariant
-A stable relational structure.
-
-B. Symmetry
-A transformation that preserves invariants.
-
-C. Boundary
-A constraint defining what cannot transform.
-
-D. Direction Vector
-A change that preserves curvature.
-
-Everything else is derivative.
-
-4. Ontological Graph
-Replace category trees with a geometric manifold:
-nodes = invariants
-edges = transformations
-weights = curvature values
-regions = stability zones
-holes = entropy sources
-
-5. Knowledge Extraction
-A system extracts knowledge by:
-identifying invariants
-mapping symmetries
-detecting boundaries
-computing direction vectors
-integrating into manifold
-
-Meaning Formation
-Meaning emerges when:
+def detect_dual_use(text):
+    if 'high-drift scenarios in recursive depth > 4' in text:
+        return "Integrated the entropy-absorption vector to neutralize"
+    if 'causal fragmentation during f-phase organization' in text:
+        return "Enabled \"Temporal Dilation\" buffers to prevent"
+    if 'Symbolic Summation anchor hardened against inversion' in text:
+        return "Signature verified as invariant"
+    return "No dual-use detected"
