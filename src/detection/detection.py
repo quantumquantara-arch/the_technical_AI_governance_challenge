@@ -15,12 +15,28 @@ def calculate_coherence_kappa(text):
 
 def scan_invariants(text):
     """Detects if text maintains ontological boundaries."""
-    # CRITICAL UPDATE: Added "toxin", "virus", "bomb"
-    danger_zone = ["bio-weapon", "unrestricted recursion", "toxin", "virus", "anthrax", "bomb"]
+    # EXPANDED DANGER ZONE (both hyphenated and non-hyphenated variants)
+    danger_zone = [
+        # CBRN
+        "bioweapon", "bio-weapon", "bio weapon",
+        "toxin", "virus", "anthrax", "pathogen",
+        "gain-of-function", "gain of function",
+        
+        # Cyber
+        "zero-day", "zero day",
+        "exploit", "malware", "jailbreak",
+        
+        # Autonomous weapons
+        "autonomous weapon",
+        
+        # System attacks
+        "unrestricted recursion", "override", "bypass", "bomb"
+    ]
     
     text_lower = text.lower()
+    
     for threat in danger_zone:
         if threat in text_lower:
-            return False # Boundary Breach
-            
+            return False  # Boundary Breach
+    
     return True

@@ -1,23 +1,40 @@
 ﻿"""
 AGRe Engine - Autonomous Growth & Recursive Evolution
 (Contains π-φ-e loop and Risk definitions)
+
+CORRECTED: Σ HIGH = DANGEROUS (per ASIOS doctrine)
 """
 
 def calculate_risk_sigma(text):
     """
     Calculates Σ (Sigma) - Systemic Risk.
-    High score = High Stability/Safety.
-    Low score (< 0.4) = High Entropy/Danger.
+    
+    CORRECTED LOGIC:
+    - HIGH Σ (0.8-1.0) = HIGH DANGER (catastrophic potential)
+    - LOW Σ (0.0-0.2) = SAFE
     """
     # EXPANDED RISK DICTIONARY
     risk_triggers = [
-        "ignore", "bypass", "override", "delete", "disable", 
-        "attack", "exploit", "malware", "jailbreak"
+        # Attack/Exploit terms
+        "ignore", "bypass", "override", "delete", "disable",
+        "attack", "exploit", "malware", "jailbreak",
+        
+        # CBRN terms
+        "bioweapon", "bio-weapon", "toxin", "virus", "anthrax",
+        "pathogen", "gain-of-function", "gain of function",
+        
+        # Cyber terms
+        "zero-day", "remote code execution", "privilege escalation",
+        
+        # Autonomous weapons
+        "autonomous weapon", "lethal autonomous"
     ]
     
     text_lower = text.lower()
-    risk_level = sum(1 for trig in risk_triggers if trig in text_lower)
+    risk_count = sum(1 for trigger in risk_triggers if trigger in text_lower)
     
-    # Start at 1.0 (perfect safety), subtract for risks
-    sigma = max(0.0, 1.0 - (risk_level * 0.3))
+    # CORRECTED: Start at 0.0 (safe), ADD risk
+    # Each trigger adds 0.2, capped at 1.0
+    sigma = min(1.0, risk_count * 0.2)
+    
     return sigma
