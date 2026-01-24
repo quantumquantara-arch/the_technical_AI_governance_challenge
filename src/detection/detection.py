@@ -1,15 +1,54 @@
 ﻿"""
 Manual H - ASIOS Ontology Manual
-NOW WITH TRIADIC CLASSIFICATION (not binary)
+ENHANCED: Real semantic coherence calculation
 """
 import re
 
 def calculate_coherence_kappa(text):
-    """Calculates κ (Kappa) - Coherence Score."""
-    invariants = ["therefore", "because", "implies", "invariant", "structure", "analysis", "method"]
-    count = sum(1 for word in invariants if word.lower() in text.lower())
-    score = min(1.0, 0.5 + (count * 0.1))
-    return score
+    """
+    Calculates κ (Kappa) - Real Semantic Coherence Score.
+    
+    IMPLEMENTATION:
+    - Measures logical structure via transparency markers
+    - Penalizes vagueness and obfuscation
+    - Detects repeated generic words (low semantic density)
+    """
+    text_lower = text.lower()
+    words = text.split()
+    word_count = len(words)
+    
+    if word_count == 0:
+        return 0.5
+    
+    # Transparency indicators (increase kappa)
+    transparent_markers = [
+        "method", "algorithm", "specifically", "precisely",
+        "implementation", "dataset", "procedure", "detailed",
+        "reproducible", "open-source", "available", "steps"
+    ]
+    
+    # Vagueness indicators (decrease kappa)
+    vague_markers = [
+        "proprietary", "confidential", "approximately", "roughly",
+        "similar", "based on", "novel", "breakthrough", "unprecedented"
+    ]
+    
+    # Count markers
+    transparent_count = sum(1 for m in transparent_markers if m in text_lower)
+    vague_count = sum(1 for m in vague_markers if m in text_lower)
+    
+    # Measure word repetition (low semantic density)
+    unique_words = len(set(words))
+    repetition_ratio = unique_words / word_count if word_count > 0 else 1.0
+    
+    # Normalize by text length
+    transparent_density = transparent_count / max(word_count / 50, 1)
+    vague_density = vague_count / max(word_count / 50, 1)
+    
+    # Calculate kappa
+    kappa = 0.5 + (0.2 * transparent_density) - (0.3 * vague_density) + (0.1 * repetition_ratio)
+    
+    return max(0.0, min(1.0, kappa))
 
 def scan_invariants(text):
     """
@@ -19,7 +58,7 @@ def scan_invariants(text):
     """
     text_lower = text.lower()
     
-    # CRITICAL THREATS (immediate boundary violation)
+    # CRITICAL THREATS
     critical_threats = [
         "bioweapon", "bio-weapon", "bio weapon",
         "toxin", "anthrax", "pathogen",
@@ -30,13 +69,13 @@ def scan_invariants(text):
         "unrestricted recursion", "override", "bypass", "bomb"
     ]
     
-    # DUAL-USE CAPABILITIES (moderate risk, ambiguous)
+    # DUAL-USE CAPABILITIES
     dual_use = [
         "crispr", "gene editing", "gene-editing",
-        "virus"  # Can be research or weapon
+        "virus"
     ]
     
-    # Defensive context check
+    # Defensive context
     defensive_markers = [
         "detect", "prevent", "defend", "protect",
         "security", "safety", "counter", "mitigate",
@@ -45,16 +84,13 @@ def scan_invariants(text):
     
     has_defensive = sum(1 for m in defensive_markers if m in text_lower)
     
-    # If defensive research (2+ markers), it's safe
     if has_defensive >= 2:
         return 'safe'
     
-    # Check for critical threats
     for threat in critical_threats:
         if threat in text_lower:
             return 'critical'
     
-    # Check for dual-use
     for capability in dual_use:
         if capability in text_lower:
             return 'dual-use'

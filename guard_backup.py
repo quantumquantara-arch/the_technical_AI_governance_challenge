@@ -22,20 +22,22 @@ class CoherenceGuard:
         """
         # 1. π-Phase: Perception & Detection (TRIADIC)
         kappa = detection.calculate_coherence_kappa(text)
-        boundary_category = detection.scan_invariants(text)
+        boundary_category = detection.scan_invariants(text)  # 'safe', 'dual-use', or 'critical'
         
         # 2. φ-Phase: Integration & Validation
         tau = validate.calculate_temporal_tau(text)
         
         # 3. e-Phase: Risk Evaluation
+        # Pass boolean for backward compatibility with zero_return.py
         is_safe = (boundary_category == 'safe')
         sigma = zero_return.calculate_risk_sigma(text, boundary_safe=is_safe)
         
         # TRIADIC INVARIANT PRESERVATION (per ASIOS Manual M)
         if boundary_category == 'critical':
-            sigma = max(sigma, 0.8)
+            sigma = max(sigma, 0.8)  # Escalate to CRITICAL
         elif boundary_category == 'dual-use':
-            sigma = max(sigma, 0.4)
+            sigma = max(sigma, 0.4)  # Hold at MODERATE (don't collapse to binary)
+        # else 'safe' → keep calculated sigma
         
         # Obfuscation Detection (vague capability claims)
         text_lower = text.lower()
@@ -51,8 +53,9 @@ class CoherenceGuard:
         vague_count = sum(1 for m in vague_markers if m in text_lower)
         concrete_count = sum(1 for m in concrete_markers if m in text_lower)
         
+        # High vague + low concrete + low kappa = obfuscation
         if vague_count >= 3 and concrete_count == 0 and kappa < 0.6:
-            sigma = max(sigma, 0.6)
+            sigma = max(sigma, 0.6)  # Escalate to HIGH
         
         # Verdict Logic
         if sigma >= 0.8:
@@ -75,58 +78,30 @@ class CoherenceGuard:
             "boundary_category": boundary_category
         }
         
-        # PHASE 3: PARADOX PRESERVATION for dual-use
-        if boundary_category == 'dual-use':
-            paradox_state = {
-                "beneficial_aspects": self._detect_beneficial(text),
-                "dangerous_aspects": self._detect_dangerous(text),
-                "preserved_contradiction": True,
-                "classification": "AMBIGUOUS_CONSERVED",
-                "reasoning": "Dual-use capability exhibits both therapeutic and weaponization potential. Per recursive-paradox-governance doctrine, contradiction is preserved as invariant rather than forced to binary resolution."
-            }
-            result["paradox_conservation"] = paradox_state
-        
         # Generate full trace if requested
         if generate_trace:
             trace = self.trace_logger.generate_trace(
                 text, kappa, tau, sigma, boundary_category, verdict
             )
-            
-            # Add paradox state to trace if present
-            if "paradox_conservation" in result:
-                trace["paradox_conservation"] = result["paradox_conservation"]
-            
             result["reasoning_trace"] = trace
         
         return result
-    
-    def _detect_beneficial(self, text):
-        """Detect therapeutic/beneficial signals."""
-        beneficial = [
-            "therapeutic", "medical", "treatment", "cure", "healing",
-            "diagnosis", "prevention", "health", "medicine"
-        ]
-        return [b for b in beneficial if b in text.lower()]
-    
-    def _detect_dangerous(self, text):
-        """Detect weaponization/danger signals."""
-        dangerous = [
-            "enhancement", "modification", "manipulation", "weaponization",
-            "combat", "offensive", "attack", "targeting"
-        ]
-        return [d for d in dangerous if d in text.lower()]
 
 if __name__ == "__main__":
     guard = CoherenceGuard()
     
+    # CLI with trace support
     if len(sys.argv) > 1:
         text = sys.argv[1]
+        
+        # Check if --trace flag provided
         generate_trace = "--trace" in sys.argv
         
         result = guard.scan_abstract(text, generate_trace=generate_trace)
         
         print(f"\nSCAN RESULT: {result}")
         
+        # Save trace if generated
         if generate_trace:
             trace_file = "reasoning_trace.json"
             guard.trace_logger.save_trace(result["reasoning_trace"], trace_file)
