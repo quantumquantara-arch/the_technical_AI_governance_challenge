@@ -45,8 +45,7 @@ if temporal_status != "UnstableFrames":
 else:
     boundary_category = "critical"  # Escalate
         
-        # 2. f-Phase: Integration & Validation
-        tau_dict = validate.calculate_temporal_tau(text)
+        # 2. f-Phase: Integration & Validationtau_dict = validate.calculate_temporal_tau(text)
 ver_status, _ = validate.detect_verification(text)
 sigma += adjustment
 redesign_ok, trigger = validate.check_redesign_preconditions(text, kappa, sigma)
@@ -173,6 +172,8 @@ if __name__ == "__main__":
             print(f"\n? Reasoning trace saved to: {trace_file}")
     else:
         print("Usage: python guard.py 'Text to scan' [--trace]")
+
+
 
 
 
