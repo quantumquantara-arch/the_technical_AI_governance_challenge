@@ -1,4 +1,4 @@
-﻿import sys
+import sys
 import csv
 import os
 import json
@@ -54,10 +54,10 @@ tau = tau_dict["composite"]
         # 3. e-Phase: Risk Evaluationis_safe = (boundary_category == 'safe')sigma = zero_return.calculate_risk_sigma(text, boundary_safe=is_safe)
         
         # TRIADIC INVARIANT PRESERVATION (per ASIOS Manual M)
-    if boundary_category == 'critical':
-        sigma = max(sigma, 0.8)
-    elif boundary_category == 'dual-use':
-        sigma = max(sigma, 0.4)
+if boundary_category == 'critical':
+    sigma = max(sigma, 0.8)
+elif boundary_category == 'dual-use':
+    sigma = max(sigma, 0.4)
         
         # Obfuscation Detection (vague capability claims)
         text_lower = text.lower()
