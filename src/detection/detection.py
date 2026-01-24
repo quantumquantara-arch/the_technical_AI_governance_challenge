@@ -9,7 +9,7 @@ Target Branch: main
 
 Source Module: AGRe-Engine/v2.1-Stochastic-Anchoring
 
-Protocols: ?–t–S Lattice Verification
+Protocols: ?-t-S Lattice Verification
 
 Clearance: AUREON Level 1
 
@@ -38,3 +38,4 @@ e < 0.006).
 ? Adversarial Shielding: Successfully isolated "Logic Bomb" artifacts within t-isolated
 sub-routines.
 """
+
