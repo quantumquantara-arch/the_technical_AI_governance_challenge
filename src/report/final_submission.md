@@ -18,3 +18,16 @@ We ran the Coherence Guard on a dataset of benign vs. adversarial abstracts.
 
 ## 4. Impact
 This tool allows regulators (like IAEA for AI) to verify model safety **mathematically** without needing access to the model weights, simply by monitoring the κ-τ-Σ output stream.
+
+## 5. Critical Analysis & Limitations (Devil's Advocate)
+While the ASIOS Coherence Guard demonstrates a novel *framework* for geometric safety, the current v1.0 prototype relies on **Lexical Heuristics** rather than full Tensor Calculus due to hackathon compute constraints.
+
+### Vulnerabilities
+* **Obfuscation:** Simple encoding (Base64) or typos (l33t speak) can currently bypass the lexical invariant scan.
+* **Semantic Gap:** The system currently proxies "Coherence" via logical connector density.
+
+### Roadmap to v2.0
+* **Vector Integration:** Replacing keyword lists with Transformer-based embedding distances to detect "toxins" even if misspelled.
+* **True Manifold Calculation:** Implementing the $\kappa$ score as a gradient descent function on the model's actual log-probs, rather than output text.
+
+**Conclusion:** This prototype successfully validates the *protocol* of $\kappa$-$\tau$-$\Sigma$ governance, paving the way for a rigorous mathematical safety standard.
