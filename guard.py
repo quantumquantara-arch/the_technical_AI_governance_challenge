@@ -11,3 +11,6 @@ papers = ["symbolic constancy under recursion"]
 validation = validate_papers(papers)
 
 print(detection, zero, validation)
+
+detection = detect_dual_use("test")
+print(detection)
