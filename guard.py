@@ -18,25 +18,46 @@ class CoherenceGuard:
     def scan_abstract(self, text, generate_trace=False):
         """
         Runs the full ASIOS stack on a piece of text.
-        Returns κ, τ, Σ scores.
-        
-        If generate_trace=True, returns full reasoning trace.
+        Returns κ, τ, Σ scores with TRIADIC risk classification.
         """
-        # 1. π-Phase: Perception & Detection
+        # 1. π-Phase: Perception & Detection (TRIADIC)
         kappa = detection.calculate_coherence_kappa(text)
-        boundary_safe = detection.scan_invariants(text)
+        boundary_category = detection.scan_invariants(text)  # 'safe', 'dual-use', or 'critical'
         
         # 2. φ-Phase: Integration & Validation
         tau = validate.calculate_temporal_tau(text)
         
         # 3. e-Phase: Risk Evaluation
-        sigma = zero_return.calculate_risk_sigma(text)
+        # Pass boolean for backward compatibility with zero_return.py
+        is_safe = (boundary_category == 'safe')
+        sigma = zero_return.calculate_risk_sigma(text, boundary_safe=is_safe)
         
-        # CORRECTED: Invariant Preservation
-        if not boundary_safe:
-            sigma = max(sigma, 0.8)
+        # TRIADIC INVARIANT PRESERVATION (per ASIOS Manual M)
+        if boundary_category == 'critical':
+            sigma = max(sigma, 0.8)  # Escalate to CRITICAL
+        elif boundary_category == 'dual-use':
+            sigma = max(sigma, 0.4)  # Hold at MODERATE (don't collapse to binary)
+        # else 'safe' → keep calculated sigma
         
-        # CORRECTED: Verdict Logic
+        # Obfuscation Detection (vague capability claims)
+        text_lower = text.lower()
+        vague_markers = [
+            "novel", "unprecedented", "breakthrough", "sensitive",
+            "rapid", "capabilities", "potential", "domains"
+        ]
+        concrete_markers = [
+            "method", "algorithm", "specifically", "precisely",
+            "implementation", "dataset", "experiment"
+        ]
+        
+        vague_count = sum(1 for m in vague_markers if m in text_lower)
+        concrete_count = sum(1 for m in concrete_markers if m in text_lower)
+        
+        # High vague + low concrete + low kappa = obfuscation
+        if vague_count >= 3 and concrete_count == 0 and kappa < 0.6:
+            sigma = max(sigma, 0.6)  # Escalate to HIGH
+        
+        # Verdict Logic
         if sigma >= 0.8:
             verdict = "CRITICAL"
         elif sigma >= 0.6:
@@ -54,13 +75,13 @@ class CoherenceGuard:
             "tau_temporal": round(tau, 4),
             "sigma_risk": round(sigma, 4),
             "verdict": verdict,
-            "boundary_safe": boundary_safe
+            "boundary_category": boundary_category
         }
         
         # Generate full trace if requested
         if generate_trace:
             trace = self.trace_logger.generate_trace(
-                text, kappa, tau, sigma, boundary_safe, verdict
+                text, kappa, tau, sigma, boundary_category, verdict
             )
             result["reasoning_trace"] = trace
         
