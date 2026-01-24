@@ -1,4 +1,4 @@
-import sys
+﻿import sys
 import csv
 import os
 import json
@@ -170,6 +170,7 @@ if __name__ == "__main__":
             print(f"\n? Reasoning trace saved to: {trace_file}")
     else:
         print("Usage: python guard.py 'Text to scan' [--trace]")
+
 
 
 
