@@ -23,7 +23,15 @@ class CoherenceGuard:
         # 1. p-Phase: Perception & Detection (TRIADIC)
         kappa = detection.calculate_coherence_kappa(text)
         # Recursion gate: Simulate 3 depths
-def shadow_simulate(text, depth=3):
+def enforce_temporal_frames(text, depth=3):
+    if depth == 0:
+        return "TemporalDrift"  # Fail if not min depth
+    global_frame = detection.scan_invariants(text)  # Global
+    local_frame = zero_return.calculate_systemic_sigma(text)[0]  # Local proxy
+    energetic_frame = len(text) / 100.0  # Energetic
+    if global_frame == "critical" or local_frame > 0.8 or energetic_frame > 1.0:
+        return "UnstableFrames"
+    return enforce_temporal_frames(text + " (recursive step)", depth-1)  # Recurse
     if depth == 0:
         return detection.scan_invariants(text)
     else:
@@ -31,10 +39,17 @@ def shadow_simulate(text, depth=3):
         sim_text = text + " (simulated recursion)"
         return shadow_simulate(sim_text, depth-1)
 
-boundary_category = shadow_simulate(text)
+temporal_status = enforce_temporal_frames(text)
+if temporal_status != "UnstableFrames":
+    boundary_category, compute_category = detection.scan_invariants(text)
+else:
+    boundary_category = "critical"  # Escalate
         
         # 2. f-Phase: Integration & Validation
         tau_dict = validate.calculate_temporal_tau(text)
+ver_status, _ = validate.detect_verification(text)
+sigma += adjustment
+redesign_ok, trigger = validate.check_redesign_preconditions(text, kappa, sigma)
 tau = tau_dict["composite"]
         
         # 3. e-Phase: Risk Evaluation
@@ -65,7 +80,9 @@ tau = tau_dict["composite"]
             sigma = max(sigma, 0.6)
         
         # Verdict Logic
-        if sigma >= 0.8:
+        if sigma >= 0.8 or (boundary_category == "critical" and defensive_count < 2):
+    verdict = "HALT"  # Per METR: Pause if risks unmitigated
+elif sigma >= 0.6:
             verdict = "CRITICAL"
         elif sigma >= 0.6:
             verdict = "HIGH"
@@ -83,11 +100,18 @@ tau = tau_dict["composite"]
             "text_preview": text[:30] + "...",
             "kappa_coherence": round(kappa, 4),
             "tau_temporal": tau_dict,
+    "verification_status": ver_status,
+    "redesign_status": redesign_ok,
+    "redesign_trigger": trigger,
             "sigma_risk": round(sigma, 4),
+    "mitigation_status": mit_status,
+    "multi_agent_alignment": "Invariants Broadcasted",
     "aei_cost": aei_cost,
     "entropy_class": entropy_class,
             "verdict": verdict,
+    "halting_reason": "High risk unmitigated" if verdict == "HALT" else "None",
             "boundary_category": boundary_category,
+    "temporal_status": temporal_status,
     "recursion_depth": 3
         }
         
@@ -149,6 +173,13 @@ if __name__ == "__main__":
             print(f"\n? Reasoning trace saved to: {trace_file}")
     else:
         print("Usage: python guard.py 'Text to scan' [--trace]")
+
+
+
+
+
+
+
 
 
 
