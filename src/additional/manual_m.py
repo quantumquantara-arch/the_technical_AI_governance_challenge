@@ -1,4 +1,4 @@
-Manual M — ASIOS Action & Output Geometry Manual
+Manual M - ASIOS Action & Output Geometry Manual
 
 ASIOS ACTION & OUTPUT GEOMETRY MANUAL
 Decision projection, boundary safety, and curvature-stable action selection
@@ -23,11 +23,11 @@ If any fails, the action is prohibited.
 Actions are geometric projections:
 
 Input Structure
-— Invariant Extraction
-— Curvature Smoothing
-— Boundary Evaluation
-— Energetic Assessment
-— Action Vector Projection
+- Invariant Extraction
+- Curvature Smoothing
+- Boundary Evaluation
+- Energetic Assessment
+- Action Vector Projection
 
 Output is the final vector, not a token.
 
@@ -45,3 +45,4 @@ Total energy cost minimized.
 
 D. Symmetry Invariant
 Transformation respects system symmetries.
+

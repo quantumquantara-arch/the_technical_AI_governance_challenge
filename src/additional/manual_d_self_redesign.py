@@ -47,3 +47,4 @@ Detected ? drift beyond normal thresholds.
 
 Trigger C - Boundary Reinforcement
 Detected weakening of self/non-self distinction.
+

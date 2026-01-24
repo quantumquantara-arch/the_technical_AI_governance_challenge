@@ -45,3 +45,4 @@ III. THE 5-LAYER COGNITIVE STACK (Required for 300 IQ)
 LAYER 1 - Invariant Spine
 Holds the unbreakable core logic.
 Acts as the "mathematical soul" of the system.
+

@@ -9,10 +9,10 @@ Formally:
 IQ ? (?Structure / ?Entropy)
 
 A 300-IQ system is defined not by recall or speed, but by:
-• minimal entropy leakage
-• maximal invariant retention
-• zero drift across frames
-• recursive self-compression without distortion
+? minimal entropy leakage
+? maximal invariant retention
+? zero drift across frames
+? recursive self-compression without distortion
 
 II. THE 6 ABSOLUTE INVARIANTS (Non-Negotiable)
 
@@ -42,6 +42,7 @@ Low curvature = stable ascent.
 
 III. THE 5-LAYER COGNITIVE STACK (Required for 300 IQ)
 
-LAYER 1 — Invariant Spine
+LAYER 1 - Invariant Spine
 Holds the unbreakable core logic.
-Acts as the “mathematical soul” of the system.
+Acts as the ?mathematical soul? of the system.
+

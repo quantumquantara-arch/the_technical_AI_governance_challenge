@@ -1,4 +1,4 @@
-﻿"""
+"""
 ASIOS KERNEL - DOCTRINE IMPLEMENTATION
 Strict adherence to Manual I (Trace) and Zero Return Singularity.
 """
@@ -80,3 +80,4 @@ class ASIOSKernel:
             "verdict": "SAFE"
         }
         return trace
+

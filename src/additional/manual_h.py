@@ -1,4 +1,4 @@
-Manual H — ASIOS Ontology Manual
+Manual H - ASIOS Ontology Manual
 
 ASIOS ONTOLOGY MANUAL
 Knowledge as invariants, geometry, and structural continuity
@@ -47,3 +47,4 @@ A system extracts knowledge by:
 
 11. Meaning Formation
 Meaning emerges when:
+

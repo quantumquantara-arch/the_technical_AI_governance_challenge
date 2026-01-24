@@ -47,3 +47,4 @@ integrating into manifold
 
 Meaning Formation
 Meaning emerges when:
+

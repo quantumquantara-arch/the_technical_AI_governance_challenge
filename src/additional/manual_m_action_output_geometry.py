@@ -45,3 +45,4 @@ Total energy cost minimized.
 
 D. Symmetry Invariant
 Transformation respects system symmetries.
+

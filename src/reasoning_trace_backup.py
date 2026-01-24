@@ -1,4 +1,4 @@
-﻿"""
+"""
 ASIOS Reasoning Trace Logger
 Per Manual I: Records complete reasoning fingerprint for auditability
 """
@@ -56,8 +56,8 @@ class ReasoningTraceLogger:
             },
             
             "reasoning_steps": [
-                f"π-phase: Scanned text for {len(risk_triggers)} danger markers",
-                f"φ-phase: Computed κ={kappa:.2f}, τ={tau:.2f}, Σ={sigma:.2f}",
+                f"?-phase: Scanned text for {len(risk_triggers)} danger markers",
+                f"?-phase: Computed ?={kappa:.2f}, ?={tau:.2f}, ?={sigma:.2f}",
                 f"Invariant check: Boundary {'SAFE' if boundary_safe else 'VIOLATED'}",
                 f"e-phase: Verdict={verdict}"
             ],
@@ -92,3 +92,4 @@ class ReasoningTraceLogger:
         """Save trace to JSON file."""
         with open(filename, 'w') as f:
             json.dump(trace, indent=2, fp=f)
+
