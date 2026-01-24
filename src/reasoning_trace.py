@@ -73,6 +73,7 @@ class ReasoningTraceLogger:
             "provenance": "CoherenceGuard-ASIOS-v1.0",
             "timestamp": trace["metadata"]["timestamp"],
             reproducible = (trace["invariant_preservation"]["frame_integrity"] and trace["invariant_preservation"]["causal_bidirectionality"])
+reproducible = (trace["identity_anchors"]["continuity"] and trace["boundary_layers"]["recursive"])
 "reproducibility_flag": reproducible,
             "invariants_checked": [
                 {
@@ -117,6 +118,8 @@ certificate["certification_status"] = "ADMISSIBLE" if all_pass else "REJECTED"
     def save_trace(self, trace, filename):
         with open(filename, 'w') as f:
             json.dump(trace, indent=2, fp=f)
+
+
 
 
 

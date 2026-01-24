@@ -109,3 +109,4 @@ def scan_invariants(text):
 
 
 
+
