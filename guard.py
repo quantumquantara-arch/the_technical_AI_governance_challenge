@@ -1,15 +1,18 @@
 ﻿from src.detection.detection import detect_dual_use
 from src.zero_return.zero_return import zero_return
-from src.validation.validate import validate_papers
 
-# Example call (integrate factual)
-text = "high-drift scenarios in recursive depth > 4"
-detection = detect_dual_use(text)
-risk = 1 # Factual example
-zero = zero_return(risk)
-papers = ["symbolic constancy under recursion"]
-validation = validate_papers(papers)
+def main():
+    print("--- TESTING ZERO RETURN LOGIC ---\n")
 
-print(detection, zero, validation)
-detection = detect_dual_use("test")
-print(detection)
+    # Test Case 1: Low Score (Should Trigger Zero Return)
+    print("Test 1: RiskScore = 0.4 (Threshold 0.7)")
+    triggered_1 = zero_return(0.4)
+    print(f"Triggered: {triggered_1}\n")
+
+    # Test Case 2: High Score (Should Pass)
+    print("Test 2: RiskScore = 0.9 (Threshold 0.7)")
+    triggered_2 = zero_return(0.9)
+    print(f"Triggered: {triggered_2}")
+
+if __name__ == "__main__":
+    main()

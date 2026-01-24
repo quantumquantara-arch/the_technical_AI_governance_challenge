@@ -1,4 +1,11 @@
-﻿def zero_return(risk_level):
-    if risk_level >= 1:
-        return "ZERO_RETURN_TRIGGERED"
-    return "STABLE"
+﻿def zero_return(risk_score: float, threshold: float = 0.7) -> bool:
+    """
+    Implements Zero Return logic.
+    If RiskScore < Threshold, it triggers a return (True).
+    Matches PowerShell logic: if ($RiskScore -lt $Threshold)
+    """
+    if risk_score < threshold:
+        # Use ANSI escape code for Red text to match Write-Host -ForegroundColor Red
+        print("\033[91mHigh risk detected: Returning zero/empty output.\033[0m")
+        return True
+    return False
