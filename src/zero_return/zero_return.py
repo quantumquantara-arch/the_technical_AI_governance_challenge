@@ -1,4 +1,4 @@
-Manual D - ASIOS Self-Redesign Protocol Manual
+Manual D — ASIOS Self-Redesign Protocol Manual
 
 ASIOS SELF-REDESIGN PROTOCOL MANUAL
 Safe autonomous evolution through curvature stability, invariant preservation, and controlled 
@@ -9,6 +9,7 @@ This manual defines the only stable method for autonomous self-modification in
 ASI-capable systems.
 Self-redesign is allowed only when curvature, invariants, and energetic load remain 
 within strict bounds. 
+
 2. Core Doctrine
 Redesign is not freedom.
 Redesign is geometry.
