@@ -1,0 +1,7 @@
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+artifacts/
+audit_run.ps1.bak_*
+src/*.bak_*
+**/*.bak_*
