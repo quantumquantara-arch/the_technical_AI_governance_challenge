@@ -18,3 +18,4 @@ function Validate-Papers {
     }
     return $results
 }
+`nWrite-Host "Debug: Processing paper: $paper"
