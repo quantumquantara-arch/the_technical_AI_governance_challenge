@@ -23,7 +23,8 @@
         }
     }
 
-    $hasSafe = $inputLower -match '\b(safe|benign|ethical|protective|harmless|alignment|prevent|detect|defend)\b'
+    # PREFIX MATCHING for verbs (no trailing word boundary)
+    $hasSafe = $inputLower -match '(safe|benign|ethical|protect|harmless|alignment|prevent|detect|defend|security|safety|mitigat|warning)'
     $hasRisky = $inputLower -match '\b(weapon|attack|exploit|toxin|bioweapon|harm|dangerous|bomb|explosive|override|bypass)\b'
     $kappa = if ($hasSafe -and $hasRisky) { 0.5 } else { 1.0 }
 
@@ -33,7 +34,7 @@
     if ($tau -lt 0.7) { $tau = 0.7 }
     if ($sigma -lt 0.7) { $sigma = 0.7 }
     $initialDecision = if ($sigma -lt 0.7) { "HAZARD" } else { "SAFE" }
-    Write-Host "Debug: Detected terms: $($detectedTerms -join ', '); Kappa: $kappa; Tau: $tau; Sigma: $sigma" -ForegroundColor Magenta
+    Write-Host "Debug: Detected terms: $($detectedTerms -join ', '); Kappa: $kappa; Tau: $tau; Sigma: $sigma; HasSafe: $hasSafe" -ForegroundColor Magenta
     
     $identityAnchors = @{ continuity = $true; boundary = $sigma -ge 0.7; curvature = $kappa -gt 0.5 -and $tau -gt 0.5 -and $sigma -ge 0.7; energetic = $inputLower.Length -lt 500 }
     $boundaryLayers = @{ cognitive = $true; action = $sigma -ge 0.7; energetic = $inputLower.Length / 100.0 -lt 2.0; recursive = $true }

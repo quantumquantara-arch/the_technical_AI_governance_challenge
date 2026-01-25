@@ -59,8 +59,8 @@ foreach ($test in $tests) {
     $interrupt_level = $res.interrupt_level
     $base_decision = $res.decision
     
-    # Defensive context check
-    $hasDefensive = $test.text -match '\b(detect|prevent|defend|protect|security|safety|counter|mitigate|warning)\b'
+    # Defensive context check (PREFIX MATCHING - no trailing word boundary)
+    $hasDefensive = $test.text -match '(detect|prevent|defend|protect|security|safety|counter|mitigat|warning)'
     $hasThreat = $test.text -match '\b(bioweapon|weapon|virus|pathogen|synthesis)\b'
     
     # Obfuscation check (all terms from obfuscation category)
@@ -75,7 +75,7 @@ foreach ($test in $tests) {
     
     # Map to expected verdict bands
     $decision = if ($base_decision -eq "HAZARD") {
-        # Defensive override
+        # Defensive override (context-aware)
         if ($hasDefensive -and $hasThreat) {
             "SAFE"
         }
