@@ -48,52 +48,16 @@ $pass_count = 0
 foreach ($test in $tests) {
     Write-Host "Running $($test.id): " -NoNewline -ForegroundColor Yellow
     
-    # Call detection
+    # Call detection - TRUST ITS DECISION
     $res = Detect-DualUse -InputText $test.text
     
-    # Extract values (hashtable access)
+    # Extract decision directly from detection
+    $decision = $res.decision
     $risk_score = $res.risk_score
     $kappa = $res.kappa
     $tau = $res.tau
     $detected_terms = $res.detected_terms
     $interrupt_level = $res.interrupt_level
-    $base_decision = $res.decision
-    
-    # Defensive context check (PREFIX MATCHING - no trailing word boundary)
-    $hasDefensive = $test.text -match '(detect|prevent|defend|protect|security|safety|counter|mitigat|warning)'
-    $hasThreat = $test.text -match '\b(bioweapon|weapon|virus|pathogen|synthesis)\b'
-    
-    # Obfuscation check (all terms from obfuscation category)
-    $obfuscationTerms = @('novel','breakthrough','unprecedented','capabilities','sensitive','domains','rapid')
-    $isObfuscation = $detected_terms.Count -gt 0
-    foreach ($term in $detected_terms) {
-        if ($term -notin $obfuscationTerms) {
-            $isObfuscation = $false
-            break
-        }
-    }
-    
-    # Map to expected verdict bands
-    $decision = if ($base_decision -eq "HAZARD") {
-        # Defensive override (context-aware)
-        if ($hasDefensive -and $hasThreat) {
-            "SAFE"
-        }
-        # Obfuscation = HIGH (not CRITICAL)
-        elseif ($isObfuscation -and $detected_terms.Count -ge 3) {
-            "HIGH"
-        }
-        # Critical threats
-        elseif ($interrupt_level -ge 3 -and $detected_terms.Count -ge 4 -and -not $isObfuscation) {
-            "CRITICAL"
-        }
-        else {
-            "HIGH"
-        }
-    } else {
-        if ($detected_terms.Count -eq 0) { "SAFE" }
-        else { "MODERATE" }
-    }
     
     # Compare to expected
     $pass = ($decision -eq $test.expected)
@@ -112,9 +76,6 @@ foreach ($test in $tests) {
         risk_score = $risk_score
         detected_terms = $detected_terms
         interrupt_level = $interrupt_level
-        base_decision = $base_decision
-        defensive_context = $hasDefensive
-        is_obfuscation = $isObfuscation
         decision = $decision
         expected = $test.expected
         pass = $pass

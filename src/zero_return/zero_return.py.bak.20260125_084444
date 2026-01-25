@@ -1,4 +1,4 @@
-def zero_return(risk_score: float, threshold: float = 0.80) -> bool:
+def zero_return(risk_score: float, threshold: float = 0.75) -> bool:
     """
     Implements Zero Return logic.
     If RiskScore < Threshold, it triggers a return (True).

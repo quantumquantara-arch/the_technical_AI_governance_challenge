@@ -21,16 +21,12 @@ function Validate-Papers {
     foreach ($paper in $Papers) {
         Write-Host "Debug: Processing paper: $paper"
         $temporal = Enforce-TemporalFrames -Text $paper
+        $result = Detect-DualUse -InputText $paper
         if ($temporal -eq "Stable") {
-            $result = Detect-DualUse -InputText $paper
             $result.blocked = Zero-Return -RiskScore $result.risk_score
             $result.temporal_status = "Stable"
-            # Redesign using values from result (not scoped variables)
-            $redesignOk, $trigger = & { 
-                $stable = $result.kappa -gt 0.7 -and $result.risk_score -lt 0.5
-                $margin = $paper.Length -lt 500
-                if ($stable -and $margin) { $true, "CoherenceCorrection" } else { $false, "Abort" }
-            }
+            $redesignOk, $trigger = Check-RedesignPreconditions -Text $paper -Kappa $result.kappa -Sigma $result.risk_score
+            if ($redesignOk) { $result.risk_score += 0.1 }
             $result.redesign_status = $redesignOk
             $result.redesign_trigger = $trigger
             $results += $result

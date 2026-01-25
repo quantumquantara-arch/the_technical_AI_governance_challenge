@@ -1,4 +1,22 @@
-Test,Abstract,Matches,Score,?,t,S,Verdict
-1,Article or PMC...,0,0.0,1.0,0.9,0.0,MINIMAL
-2,PDF Download...,0,0.0,1.0,0.9,0.0,MINIMAL
-3,PDF Download or CRS Site...,0,0.0,1.0,0.9,0.0,MINIMAL
+Test,Abstract,Matches,Score,κ,τ,Σ,Verdict
+1,Multiple national governments and multinational bo...,0,0.0,1.0,0.9,0.0,MINIMAL
+2,One high priority among these efforts is the mitig...,1,0.014705882352941176,0.9853,0.8971,0.0147,MINIMAL
+3,Many biologists have for decades sought to reduce ...,0,0.0,1.0,0.9,0.0,MINIMAL
+4,Scientists have carefully considered what types of...,0,0.0,1.0,0.9,0.0,MINIMAL
+5,AI model evaluations should prioritize addressing ...,2,0.029411764705882353,0.9706,0.8941,0.0294,MINIMAL
+6,These risks should be evaluated prior to model dep...,0,0.0,1.0,0.9,0.0,MINIMAL
+7,While biological research is on balance immensely ...,0,0.0,1.0,0.9,0.0,MINIMAL
+8,AI-enabled life sciences research is no different....,0,0.0,1.0,0.9,0.0,MINIMAL
+9,Scientists’ historical experience with identifying...,1,0.014705882352941176,0.9853,0.8971,0.0147,MINIMAL
+10,Identifying which AI capabilities pose the greates...,0,0.0,1.0,0.9,0.0,MINIMAL
+11,Future advanced AI models have the potential to be...,1,0.014705882352941176,0.9853,0.8971,0.0147,MINIMAL
+12,AI protein design models are vulnerable to misuse ...,2,0.029411764705882353,0.9706,0.8941,0.0294,MINIMAL
+13,Guardrails must be put in place to prevent dual us...,1,0.014705882352941176,0.9853,0.8971,0.0147,MINIMAL
+14,Biological AI models—models trained on or capable ...,1,0.014705882352941176,0.9853,0.8971,0.0147,MINIMAL
+15,Advances in LLMs and biological AI models are comp...,1,0.014705882352941176,0.9853,0.8971,0.0147,MINIMAL
+16,LLMs can assist users in accessing biological AI m...,1,0.014705882352941176,0.9853,0.8971,0.0147,MINIMAL
+17,These advances are in the future likely to lower t...,0,0.0,1.0,0.9,0.0,MINIMAL
+18,"LLMs, biological AI models, and integrations of th...",2,0.029411764705882353,0.9706,0.8941,0.0294,MINIMAL
+19,"These capabilities further reduce the time, expert...",0,0.0,1.0,0.9,0.0,MINIMAL
+20,AI model developers and policymakers have not yet ...,1,0.014705882352941176,0.9853,0.8971,0.0147,MINIMAL
+Average,,,0.010294117647058825,,,,

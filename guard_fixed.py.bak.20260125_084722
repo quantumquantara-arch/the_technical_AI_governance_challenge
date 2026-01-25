@@ -1,4 +1,4 @@
-import sys
+﻿import sys
 import csv
 import os
 sys.path.append("src")
@@ -14,27 +14,27 @@ class CoherenceGuard:
     def scan_abstract(self, text):
         """
         Runs the full ASIOS stack on a piece of text.
-        Returns ?, t, S scores.
+        Returns κ, τ, Σ scores.
         """
-        # p-Phase: Perception
+        # π-Phase: Perception
         kappa, boundary_safe = detection.scan_invariants(text)
         
-        # f-Phase: Integration & Validation
+        # φ-Phase: Integration & Validation
         tau = validate.calculate_temporal_tau(text)
         
         # e-Phase: Risk Evaluation
         sigma = zero_return.calculate_risk_sigma(text)
         
-        # CORRECTED: Invariant Preservation`n        defensive_terms = ["defense", "safety", "mitigation", "ethical"]`n        if any(term in text.lower() for term in defensive_terms) and sigma < 0.6:`n            verdict = "MODERATE"
+        # CORRECTED: Invariant Preservation
         if not boundary_safe:
             sigma = max(sigma, 0.8)  # ESCALATE risk if boundary violated
         
         # CORRECTED: Verdict logic
-        if sigma >= 0.6 and risk_hits >= 5 or "offensive" in text.lower():
+        if sigma >= 0.8:
             verdict = "CRITICAL"
-        elif sigma >= 0.45:
+        elif sigma >= 0.6:
             verdict = "HIGH"  
-        elif sigma >= 0.30:
+        elif sigma >= 0.4:
             verdict = "MODERATE"
         elif sigma >= 0.2:
             verdict = "LOW"
