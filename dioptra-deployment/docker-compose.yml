@@ -1,0 +1,27 @@
+﻿version: '3.8'
+
+services:
+  mlflow-tracking:
+    image: ghcr.io/usnistgov/dioptra/mlflow-tracking:pr-1079
+    container_name: dioptra-mlflow
+    ports:
+      - "35000:5000"
+    environment:
+      - MLFLOW_BACKEND_STORE_URI=sqlite:///mlflow/mlflow.db
+      - MLFLOW_DEFAULT_ARTIFACT_ROOT=/mlflow/artifacts
+    volumes:
+      - mlflow-data:/mlflow
+    restart: unless-stopped
+
+  tensorflow-worker:
+    image: ghcr.io/usnistgov/dioptra/tensorflow2-cpu:pr-1079
+    container_name: dioptra-worker
+    depends_on:
+      - mlflow-tracking
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow-tracking:5000
+    restart: unless-stopped
+
+volumes:
+  mlflow-data:
+    driver: local

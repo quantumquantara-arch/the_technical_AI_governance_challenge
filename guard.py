@@ -1,4 +1,4 @@
-﻿from src.detection.detection import detect_dual_use
+from src.detection.detection import detect_dual_use
 from src.zero_return.zero_return import zero_return
 
 def main():
@@ -16,3 +16,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
