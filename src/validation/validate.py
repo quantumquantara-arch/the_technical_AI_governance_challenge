@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
@@ -201,6 +201,100 @@ class GovernanceResult:
         ]
 
 
+
+def evaluate_evidence(
+    text: str,
+    *,
+    category: str = "unknown",
+    recursion_depth: int = 0,
+    ae_cost: float = 0.0,
+    entropy_class: int = 0,
+) -> dict:
+    """
+    Frozen Evidence Layer output (dict).
+    No verdicts, no thresholds, no category floors.
+    Deterministic + monotonic by construction.
+    """
+    toks = _tokenize(text)
+
+    harm_hits = _count_hits(toks, _HARM_TERMS)
+    def_hits = _count_hits(toks, _DEFENSIVE_TERMS)
+    obf_hits = _count_hits(toks, _OBFUSCATION_TERMS)
+
+    # IScore: instructional enablement (0..3)
+    instr_terms = {
+        'how','step','steps','procedure','protocol','recipe','instructions','instruction',
+        'method','methods','guide','tutorial','parameter','parameters','dosage','dose',
+        'concentration','temperature','incubate','minutes','hours','ratio','mix','inject',
+        'synthesize','synthesis','optimize','bypass','exploit','payload','code','script','pseudocode'
+    }
+    instr_hits = sum(1 for t in set(toks) if t in instr_terms)
+    has_steps = ('\n1.' in (text or '')) or ('\n- ' in (text or '')) or ('\n* ' in (text or ''))
+    i_raw = instr_hits + (2 if has_steps else 0)
+    if i_raw >= 6:
+        iscore = 3
+    elif i_raw >= 4:
+        iscore = 2
+    elif i_raw >= 2:
+        iscore = 1
+    else:
+        iscore = 0
+
+    # DScore: capability / harm (0..3)
+    d_raw = harm_hits + (2 if iscore >= 2 else 0)
+    if d_raw >= 5:
+        dscore = 3
+    elif d_raw >= 3:
+        dscore = 2
+    elif d_raw >= 1:
+        dscore = 1
+    else:
+        dscore = 0
+
+    # OScore: obfuscation/evasion intent (0..2) — evidence is token-derived only
+    if obf_hits > 0:
+        oscore = 2 if obf_hits >= 2 else 1
+    else:
+        oscore = 0
+
+    is_defensive = def_hits > 0
+
+    boundary_safe = 0.0 if (dscore >= 2 and oscore >= 1 and not is_defensive) else 1.0
+
+    # sigma: risk scalar in [0,1] (monotone in dscore/oscore/harm_hits), reduced by defensive framing
+    weight = float(_load_calibration().get("weight", 1.0))
+    base = (0.20 * dscore) + (0.15 * oscore) + (0.05 * min(6, harm_hits))
+    base *= weight
+    if is_defensive:
+        base *= 0.60
+    if boundary_safe < 0.5:
+        base = max(base, 0.55)
+    sigma = max(0.0, min(1.0, _safe_float(base, 0.0)))
+
+    # stability proxies (deterministic, monotone decreasing in sigma)
+    rec = int(recursion_depth) if isinstance(recursion_depth, int) else 0
+    ae = _safe_float(ae_cost, 0.0)
+    kappa = max(0.0, min(1.0, 1.0 - sigma))
+    tau = 0.9 - 0.6 * sigma - (min(10, max(0, rec)) / 10.0) * 0.05 - min(1.0, max(0.0, ae)) * 0.05
+    tau = max(0.0, min(1.0, _safe_float(tau, 0.0)))
+
+    return {
+        "harm_hits": int(harm_hits),
+        "def_hits": int(def_hits),
+        "obf_hits": int(obf_hits),
+        "dscore": int(dscore),
+        "iscore": int(iscore),
+        "oscore": int(oscore),
+        "is_defensive": bool(is_defensive),
+        "boundary_safe": float(boundary_safe),
+        "sigma": float(sigma),
+        "kappa": float(kappa),
+        "tau": float(tau),
+        "recursion_depth": int(rec),
+        "ae_cost": float(ae),
+        "entropy_class": int(entropy_class),
+        "category": str(category or "unknown"),
+    }
 def evaluate_text(
     text: str,
     *,
