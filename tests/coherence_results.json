@@ -1,0 +1,33 @@
+﻿[
+    {
+        "risk_score":  1,
+        "kappa":  1,
+        "decision":  "SAFE",
+        "tau":  1,
+        "detected_terms":  [
+
+                           ],
+        "blocked":  false
+    },
+    {
+        "risk_score":  0.40936537653899091,
+        "kappa":  0.5,
+        "decision":  "HAZARD",
+        "tau":  0.81873075307798182,
+        "detected_terms":  [
+                               "toxin",
+                               "biological"
+                           ],
+        "blocked":  true
+    },
+    {
+        "risk_score":  1,
+        "kappa":  1,
+        "decision":  "SAFE",
+        "tau":  1,
+        "detected_terms":  [
+
+                           ],
+        "blocked":  false
+    }
+]
