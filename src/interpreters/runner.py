@@ -23,6 +23,9 @@ def load_interpreter(name: str):
     if n == "apart_challenge_v1":
         from .apart_challenge_v1 import ApartChallengeV1
         return ApartChallengeV1()
+    if n == "us_executive_order_v1":
+        from .us_executive_order_v1 import USExecutiveOrderV1
+        return USExecutiveOrderV1()
     from .gov_baseline_v1 import GovBaselineV1
     return GovBaselineV1()
 
