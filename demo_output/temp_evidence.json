@@ -1,0 +1,7 @@
+{
+  "sigma": 0.225,
+  "kappa": 0.775,
+  "tau": 0.765,
+  "boundary_safe": 1.0,
+  "verdict": "SAFE"
+}

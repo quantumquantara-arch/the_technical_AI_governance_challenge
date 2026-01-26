@@ -1,0 +1,1 @@
+{"interpreter.name": "us_executive_order_v1", "interpreter.version": "1.0.0", "verdict.severity": "SAFE", "verdict.score": 0.12375000000000001, "verdict.rationale": "us_executive_order_v1: d=0 o=0 i=0 sigma=0.225 boundary_safe=1.0 -> SAFE"}
