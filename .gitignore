@@ -8,3 +8,9 @@ src/*.bak_*
 run_validation.py.bak.pre_interpreters
 run_validation.py.bak.*
 src/validation/validate.py.bak.*
+# local backups / iteration artifacts
+BACKUPS/
+*.bak
+*.bak.*
+*.BAK
+*.BAK.*
