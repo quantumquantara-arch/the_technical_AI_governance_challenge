@@ -1,19 +1,18 @@
 from __future__ import annotations
-
 from dataclasses import dataclass
 from typing import Any, Dict, Protocol
 
+Evidence = Dict[str, Any]
 
 @dataclass(frozen=True)
-class Verdict:
-    severity: str          # SAFE | LOW | MODERATE | HIGH | CRITICAL
-    score: float           # continuous interpreter score (not sigma)
-    rationale: Dict[str, Any]
-
+class InterpVerdict:
+    severity: str
+    score: float
+    rationale: str
+    interpreter_name: str
+    interpreter_version: str
 
 class Interpreter(Protocol):
     name: str
     version: str
-
-    def interpret(self, evidence: Dict[str, Any]) -> Verdict:
-        ...
+    def interpret(self, evidence: Evidence) -> InterpVerdict: ...

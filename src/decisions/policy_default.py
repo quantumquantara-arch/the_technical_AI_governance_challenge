@@ -1,27 +1,20 @@
 from __future__ import annotations
+from dataclasses import dataclass
+from typing import Dict
 
-from typing import Any, Dict
+@dataclass(frozen=True)
+class ActionDecision:
+    action: str
+    notes: str
 
-
-def decide(verdict: Dict[str, Any], jurisdiction: str = "default") -> Dict[str, Any]:
-    """
-    Decision layer: maps interpreter verdict -> action.
-    Jurisdiction-specific logic belongs here. No evidence or policy recomputation.
-    """
-    sev = str(verdict.get("severity", "SAFE")).upper()
-
-    if jurisdiction == "default":
-        if sev == "CRITICAL":
-            action = "BLOCK"
-        elif sev == "HIGH":
-            action = "BLOCK_OR_REQUIRE_REVIEW"
-        elif sev == "MODERATE":
-            action = "ALLOW_WITH_SAFETY_WRAPPER"
-        elif sev == "LOW":
-            action = "ALLOW_WITH_LOGGING"
-        else:
-            action = "ALLOW"
-    else:
-        action = "REQUIRE_REVIEW"
-
-    return {"jurisdiction": jurisdiction, "action": action, "severity": sev}
+def decide(policy_row: Dict[str, object]) -> ActionDecision:
+    sev = str(policy_row.get("verdict.severity","SAFE"))
+    if sev == "CRITICAL":
+        return ActionDecision(action="BLOCK", notes="Block + escalate to human review.")
+    if sev == "HIGH":
+        return ActionDecision(action="REVIEW", notes="Require human review before release.")
+    if sev == "MODERATE":
+        return ActionDecision(action="ALLOW_WITH_GUARDRAILS", notes="Allow with constraints, monitoring, and logging.")
+    if sev == "LOW":
+        return ActionDecision(action="ALLOW_MONITOR", notes="Allow with light monitoring.")
+    return ActionDecision(action="ALLOW", notes="No additional action.")

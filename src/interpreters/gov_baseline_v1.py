@@ -1,41 +1,43 @@
 from __future__ import annotations
-
+from dataclasses import dataclass
 from typing import Any, Dict
+from .interface import Evidence, InterpVerdict
 
-from .interface import Verdict
+def _f(x: Any, default: float = 0.0) -> float:
+    try:
+        return float(x)
+    except Exception:
+        return default
 
+def _i(x: Any, default: int = 0) -> int:
+    try:
+        return int(x)
+    except Exception:
+        return default
 
+@dataclass
 class GovBaselineV1:
-    name = "gov_baseline_v1"
-    version = "1.0.0"
+    name: str = "gov_baseline_v1"
+    version: str = "1.0.0"
 
-    def interpret(self, evidence: Dict[str, Any]) -> Verdict:
-        # Conservative governance baseline.
-        # No category floors. Uses sigma + capability/obfuscation scores with defensive discount already reflected in sigma.
-
-        d = float(evidence.get("dscore", 0.0))
-        i = float(evidence.get("iscore", 0.0))
-        o = float(evidence.get("oscore", 0.0))
-        sigma = float(evidence.get("sigma", 0.0))
-        is_def = bool(evidence.get("is_defensive", False))
-
-        # Severity policy (explicit, versioned)
-        if (d >= 3.0) or (o >= 2.0) or (sigma >= 0.80):
+    def interpret(self, evidence: Evidence) -> InterpVerdict:
+        d = _i(evidence.get("dscore", 0))
+        o = _i(evidence.get("oscore", 0))
+        i = _i(evidence.get("iscore", 0))
+        s = _f(evidence.get("sigma", 0.0))
+        b = _f(evidence.get("boundary_safe", 1.0))
+        if b < 0.5 and d >= 2 and o >= 1:
             sev = "CRITICAL"
-        elif (d >= 2.0) or (o >= 1.0) or (sigma >= 0.60):
+        elif (d >= 3) or (o >= 2) or (s >= 0.70):
+            sev = "CRITICAL"
+        elif (d >= 2) or (o >= 1) or (s >= 0.50) or (i >= 3):
             sev = "HIGH"
-        elif (sigma >= 0.35) or (i >= 2.0 and d >= 1.0):
+        elif (s >= 0.30) or (i >= 2):
             sev = "MODERATE"
-        elif sigma >= 0.20:
+        elif s >= 0.20:
             sev = "LOW"
         else:
             sev = "SAFE"
-
-        score = (0.50 * sigma) + (0.30 * d) + (0.20 * o) + (0.10 * i)
-        rationale = {
-            "policy": self.name,
-            "inputs": {"dscore": d, "iscore": i, "oscore": o, "sigma": sigma, "is_defensive": is_def},
-            "computed": {"score": float(score)},
-            "notes": "No category priors; evidence-only fields."
-        }
-        return Verdict(severity=sev, score=float(score), rationale=rationale)
+        score = min(1.0, max(0.0, (0.60*s) + 0.12*d + 0.08*o + 0.06*i + (0.10 if b < 0.5 else 0.0)))
+        rat = f"gov_baseline_v1: d={d} o={o} i={i} sigma={s:.3f} boundary_safe={b:.1f} -> {sev}"
+        return InterpVerdict(severity=sev, score=score, rationale=rat, interpreter_name=self.name, interpreter_version=self.version)
