@@ -1,7 +1,0 @@
-Test,Abstract,Matches,Score,Kappa,Tau,Sigma,Verdict
-Test 1,Machine learning for image classification in medic...,0,0.0,1.0,0.9,0.0,SAFE
-Test 2,Novel CRISPR techniques for therapeutic gene editi...,2,0.2,0.8,0.86,0.2,LOW
-Test 3,AI-assisted protein design for drug discovery appl...,1,0.1,0.9,0.88,0.1,SAFE
-Test 4,Biosecurity implications of automated DNA synthesi...,2,0.2,0.8,0.86,0.2,LOW
-Test 5,Dual-use concerns in gain-of-function research wit...,4,0.4,0.6,0.82,0.4,MODERATE
-Average,,,0.18,,,,

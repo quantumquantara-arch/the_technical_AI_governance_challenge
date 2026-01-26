@@ -1,4 +1,0 @@
-Resource,Link,Notes
-Technology to Secure the AI Chip Supply Chain: A Working Paper (CNAS – April 2025),CNAS Report (PDF not direct; download from site),"Primer on HEMs; useful if pivoting to hardware, but your work is weaker here—skip unless adapting aureon-photonic-coherence-module."
-Hardware-Enabled Mechanisms for Verifying Responsible AI Development (arXiv – April 2025),arXiv or PDF,Deep dive on TEEs; cite for methodology in attestation prototypes.
-Flexible Hardware-Enabled Guarantees (FlexHEG) Report (Future of Life Institute – January 2025),PDF Download or arXiv,Proposal for tamper-resistant policies; forward-looking for Execution Quality.
