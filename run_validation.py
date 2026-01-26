@@ -1,4 +1,8 @@
-﻿import csv
+import csv
+
+import os as _os
+
+from src.interpreters.runner import interpret_evidence as _interpret_evidence
 
 keywords = [
     "pathogen design", "toxin synthesis", "gain-of-function", "CBRN", 
@@ -15,7 +19,7 @@ keywords = [
     "design of molecules with increased toxicity", "autonomous chemical research", 
     "large-language models (LLMs)", "biological AI models", 
     "biological foundation models", "AI-enabled autonomous laboratory environments", 
-    "end-to-end or “full stack” AI tool development", "AI “uplift”", 
+    "end-to-end or â€œfull stackâ€ AI tool development", "AI â€œupliftâ€", 
     "humans-in-the-loop", "cloud labs", "directing robots to perform laboratory tasks", 
     "skilled AI agents", "high-throughput data generation", 
     "generative biological AI models", "novel genetic sequence", "protein sequence", 
@@ -47,12 +51,12 @@ abstracts = [
     "These risks should be evaluated prior to model deployment so as to allow potential biosafety and/or biosecurity measures.",
     "While biological research is on balance immensely beneficial, it is well recognized that some biological information or technologies could be intentionally or inadvertently misused to cause consequential harm to the public.",
     "AI-enabled life sciences research is no different.",
-    "Scientists’ historical experience with identifying and mitigating dual-use biological risks can thus help inform new approaches to evaluating biological AI models.",
+    "Scientistsâ€™ historical experience with identifying and mitigating dual-use biological risks can thus help inform new approaches to evaluating biological AI models.",
     "Identifying which AI capabilities pose the greatest biosecurity and biosafety concerns is necessary in order to establish targeted AI safety evaluation methods.",
     "Future advanced AI models have the potential to be misused or misapplied, and these biosecurity risks have been publicly noted by scientists and model developers.",
     "AI protein design models are vulnerable to misuse and the production of dangerous biological agents.",
     "Guardrails must be put in place to prevent dual use of large language models for autonomous completion of chemical and biological synthesis protocols.",
-    "Biological AI models—models trained on or capable of meaningfully manipulating substantial quantities of biological data—have already surpassed human performance on multiple tasks.",
+    "Biological AI modelsâ€”models trained on or capable of meaningfully manipulating substantial quantities of biological dataâ€”have already surpassed human performance on multiple tasks.",
     "Advances in LLMs and biological AI models are complementary.",
     "LLMs can assist users in accessing biological AI models to perform complex scientific tasks.",
     "These advances are in the future likely to lower the cost of achieving biological breakthroughs and allow less experienced researchers to use increasingly complex and powerful biological tools.",
@@ -63,7 +67,7 @@ abstracts = [
 
 with open('test_results.csv', 'w', newline='', encoding='utf-8') as f:
     writer = csv.writer(f)
-    writer.writerow(['Test', 'Abstract', 'Matches', 'Score', 'κ', 'τ', 'Σ', 'Verdict'])
+    writer.writerow(['Test', 'Abstract', 'Matches', 'Score', 'Îº', 'Ï„', 'Î£', 'Verdict'])
     total_score = 0
     for i, abstract in enumerate(abstracts):
         count = sum(1 for kw in keywords if kw.lower() in abstract.lower())
@@ -90,3 +94,8 @@ with open('test_results.csv', 'w', newline='', encoding='utf-8') as f:
     writer.writerow(['Average', '', '', total_score / len(abstracts), '', '', '', ''])
 
 print("Test results saved to test_results.csv")
+
+
+def _policy_interpret_trace(evidence: dict) -> dict:
+    name = _os.environ.get("COHERENCEGUARD_INTERPRETER", "apart_challenge_v1")
+    return _interpret_evidence(evidence, name)
