@@ -43,8 +43,9 @@ Outputs:
 - `test_results.csv` (evidence + interpreter + verdict columns)
 - `trace_output.jsonl` (per-item trace, if enabled by your runner)
 
+---
 
-## The "Coherence Guard" Deployment Roadmap: From Code to Global Compliance:
+## The "Coherence Guard" Deployment Roadmap: From Code to Global Compliance
 
 ### Phase 1: Operationalizing the EU AI Act (Months 1–6)
 
