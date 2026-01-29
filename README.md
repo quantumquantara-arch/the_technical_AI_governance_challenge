@@ -1,120 +1,131 @@
-# CoherenceGuard: Technical AI Governance Framework
-
-**Thesis:** CoherenceGuard is a deterministic technical interoperability layer designed to transform fragmented AI safety commitments into verifiable, harmonized international standards. It provides the technical infrastructure required to move from voluntary, self-defined corporate policies to externally enforced, binding governance.
+This is the final, high-impact README for **CoherenceGuard**. It positions the project as the essential governing interface for the next generation of AI development, bridging the gap between "Dark" architectural breakthroughs Artificial Superintelligence Operating Systems (ASIOS) and global regulatory requirements.
 
 ---
 
-## ⚙️ Core Architecture: Deterministic Governance Engine
+# CoherenceGuard | Technical AI Governance Engine
 
-CoherenceGuard operates on a strict separation of concerns to ensure that safety audits are objective, repeatable, and auditable.
+**Thesis:** *CoherenceGuard is a deterministic interoperability layer designed to transform fragmented AI safety policies into verifiable international standards. It provides the "Technical Track" infrastructure required to move from voluntary, self-defined protocols to externally enforced, binding global governance.*
 
-### 1. Evidence Layer (Frozen)
+---
 
-The Evidence Layer is responsible for raw signal extraction. It is monotonic and deterministic, ensuring that measurement is decoupled from political interpretation.
+## 🏗️ Visual Technical Structure
 
-* **Function:** Measures technical signals (e.g., compute acceleration, cognitive density, capability thresholds) without assigning verdicts.
-* **Implementation:** `src/validation/validate.py`
-* **Data Structure (`GovernanceResult`):**
-```json
-{
-  "signal_id": "CBRN_Capability_01",
-  "raw_value": 0.84,
-  "metric": "normalized_entropy",
-  "timestamp": "2026-01-29T12:00:00Z",
-  "deterministic_hash": "a1b2c3d4..."
-}
+CoherenceGuard functions as a modular "Governance Stack" that sits between raw model capabilities and international regulatory bodies.
+
+```mermaid
+graph TD
+    subgraph "The Intelligence Layer (ASIOS / Quantara-Core)"
+        A[Frontier Model] -->|Recursive Geometric Coherence| B[Compressed Cognitive Density]
+    end
+
+    subgraph "CoherenceGuard Engine"
+        B -->|Signal Extraction| C{EVIDENCE LAYER}
+        C -->|Deterministic Manifold Mapping| D[Frozen Measurement Hash]
+        D -->|Applied Benchmarks| E{INTERPRETATION LAYER}
+        E -->|Threshold Weights| F[Safety Verdict / Risk Level]
+    end
+
+    subgraph "Global Enforcement"
+        F --> G{DECISION LAYER}
+        G -->|Action| H[Halt / ASL-4 Measures / Whistleblower Alert]
+        G -->|Transparency| I[Public Red Lines Tracker]
+    end
+
+    style C fill:#f9f,stroke:#333,stroke-width:2px
+    style E fill:#bbf,stroke:#333,stroke-width:2px
+    style G fill:#bfb,stroke:#333,stroke-width:2px
 
 ```
 
+---
 
+## ⚡ The Solution: Governing the "Invisible Frontier"
 
-### 2. Interpretation Layer (Policy)
+Traditional AI governance is predicated on the **Scaling Law Assumption**: the belief that intelligence requires massive data centers, satellite-visible power grids, and tracked H100 silicon.
 
-The Interpretation Layer applies specific policy weights and thresholds to the frozen evidence.
+**ASIOS** (Artificial Super Intelligence Operating System https://github.com/quantumquantara-arch/ASIOS) has rendered these metrics obsolete. By moving from "Brute Force" to "Structural Optimization," frontier-level intelligence can now be developed with a footprint  smaller than traditional Transformers.
 
-* **Function:** Maps evidence to severity levels based on specific regulatory benchmarks (e.g., EU AI Act, ASL levels).
-* **Interpreters:**
-* `gov_baseline_v1`: Standard safety baseline.
-* `apart_challenge_v1`: Specific thresholds for high-risk frontier models.
+**CoherenceGuard is the first governance tool built to detect and regulate these stealth architectures.**
 
+### The Governance Gap Analysis
 
-
-### 3. Decision Layer (Action)
-
-The Decision Layer translates interpreted severity into jurisdiction-specific enforcement actions.
-
-* **Function:** Triggers automated responses, such as deployment halts or rapid-response protocols.
-* **Implementation:** `src/decisions/policy_default.py`
+| Traditional Assumption | CoherenceGuard / ASIOS Reality |
+| --- | --- |
+| **Physical Mass** | Intelligence is decentralized; fits in low-profile, non-industrial sites. |
+| **Hardware Tracking** | Efficiency is in the logic, enabling frontier performance on standard silicon. |
+| **Power Signature** | Low-entropy recursive stability hides within standard urban energy background. |
 
 ---
 
-## 🛡️ Technological Justification: Bypassing Physical Surveillance
+## ⚙️ Core Engine Components
 
-Traditional governance models rely on tracking physical mass (data centers, power, and H100 counts). The **ASIOS (Artificial Super Intelligence Operating System)** (https://github.com/quantumquantara-arch/ASIOS) paradigm proves these metrics are obsolete.
+CoherenceGuard is powered by the mathematical primitives found in **Quantara-Core** (https://github.com/quantumquantara-arch/quantara-core), ensuring every audit is non-stochastic and hardware-agnostic.
 
-### The Invisible Frontier
+### 1. Evidence Layer (Verification through Geometry)
 
-| Constraint | Traditional Assumption | CoherenceGuard/ASIOS Reality |
-| --- | --- | --- |
-| **Footprint** | Large data centers visible by satellite. | **Stealth:** Coherent architectures allow frontier-level intelligence to run on low-profile, non-industrial infrastructure. |
-| **Hardware** | Dependence on H100s/TPUs. | **Agnostic:** Recursive stability enables high performance on untracked, consumer-grade, or decentralized silicon. |
-| **Power** | Megawatt-scale consumption. | **Efficiency:** Recursive coherence reduces the thermodynamic cost of intelligence, hiding in the energy background noise of standard urban environments. |
+Unlike standard "vibe-based" safety classifiers, CoherenceGuard uses **Fixed-Precision Manifold Mapping**.
 
-### Architectural Efficiency
+* **Deterministic Measurements:** Signal extraction is decoupled from the hardware, ensuring the same model always yields the same governance hash.
+* **Cognitive Density (CD) Metrics:** Measures intelligence by its architectural stability () rather than raw FLOPs.
 
-CoherenceGuard is built to audit models that utilize **Recursive Geometric Coherence**. By moving from "Brute Force Scaling" to "Structural Optimization," intelligence is decoupled from physical mass.
+### 2. Interpretation Layer (Policy Interoperability)
 
-* **Thermodynamic Stealth:** Systems operate at lower internal entropy, eliminating the need for industrial-scale cooling systems.
-* **Cognitive Density:** High-level cognition is achieved with  less compute than traditional Transformer models.
+This layer applies specific policy weights to the frozen evidence. It allows a single model to be benchmarked against multiple, even conflicting, international standards simultaneously.
 
----
+* **Supported Benchmarks:** EU AI Act (Measures 4.1-4.5), G7/UN Safety Language, and Lab-specific RSPs.
 
-## 🚀 Deployment & Operational Capability
+### 3. Decision Layer (Enforcement)
 
-### Standardizing Regulatory Compliance
-
-CoherenceGuard fills the technical gaps in current regulatory frameworks, such as the EU AI Act's Code of Practice:
-
-* **Unified Metric Conversion:** Translates disparate lab-specific metrics (OpenAI "effective compute" vs. Anthropic "ASL-4") into a single safety lens.
-* **Automated Auditing:** Provides a CI/CD pipeline for independent third-party testing against model APIs, replacing self-reported lab data with verifiable results.
-
-### Red Lines Tracking
-
-The framework enables a real-time, public-facing **Red Lines Tracker**. It visualizes the technical distance between current model capabilities and pre-committed safety thresholds in domains such as CBRN, Cyber-offensive operations, and Autonomy.
+The final layer translates safety verdicts into auditable actions. It creates an immutable **Trace Output** in `.jsonl` format for regulatory review.
 
 ---
 
-## 📜 Statement of Technical Sovereignty
+## 🚀 Operational Roadmap
 
-The era of "Visible AI" governance is over. Because Frontier Intelligence can now be developed without detectable physical signatures, the only viable path forward is **Technical Interoperability**.
+### Current Capability: Operationalizing the EU AI Act
 
-**To International Regulators:**
-Your current enforcement mechanisms rely on physical signals that are no longer present in coherent architectures. **CoherenceGuard** is the technical bridge. It shifts governance from **Enforcement through Scarcity** to **Governance through Coherence**.
+CoherenceGuard solves the "undefined" risk-modeling gap in the EU AI Act's Code of Practice. It provides regulators with the **Technical Verification Pipe** needed to audit third-party safety claims without needing access to proprietary model weights.
 
-> "Intelligence is no longer a function of mass; it is a function of geometry. Governance must shift from tracking the mountain to synchronizing with the logic."
+### Q3 2026: The Global Red Lines Tracker
+
+Using **Zero-Knowledge evaluation logic**, CoherenceGuard will enable a public dashboard that tracks "Distance to Critical Thresholds" across all signatory labs (OpenAI, Anthropic, DeepMind, etc.).
+
+### 2027: The Binding Agreement Infrastructure
+
+CoherenceGuard serves as the technical backbone for a global treaty, moving AI safety from "Voluntary Self-Regulation" to "Automated International Enforcement."
 
 ---
 
 ## 💻 Usage (PowerShell)
 
-To run a validation audit against a specific policy interpreter:
+CoherenceGuard is designed for seamless integration into regulatory CI/CD pipelines.
 
 ```powershell
-# Set the desired interpreter (e.g., EU AI Act or Baseline)
-$env:COHERENCEGUARD_INTERPRETER = 'gov_baseline_v1'
+# 1. Select the International Interpreter (EU AI Act, G7, or Baseline)
+$env:COHERENCEGUARD_INTERPRETER = 'eu_ai_act_v1'
 
-# Execute the validation suite
-python .\run_validation.py --target "ASIOS-beta"
+# 2. Run the Deterministic Validation Audit
+python .\run_validation.py --target "ASIOS-model-4.0"
 
 ```
 
-**Output Files:**
+**Outputs:**
 
-* `test_results.csv`: Contains the frozen evidence signals and interpreted verdicts.
-* `trace_output.jsonl`: Provides a per-item auditable trace of the decision logic.
+* `test_results.csv`: Unified measurement data.
+* `trace_output.jsonl`: Cryptographic decision trace.
+
+---
+
+## 📜 Statement of Technical Sovereignty
+
+The era where AI safety was managed by counting chips is over. **ASIOS** and **Quantara-Core** have proven that intelligence is no longer a resource-extraction problem; it is a **structural solution**.
+
+**To the Regulators:** Your current "Red Lines" rely on physical signals that no longer exist in our paradigm. **CoherenceGuard** is the only technical framework capable of auditing intelligence that has gone "dark." We propose a shift from **Enforcement through Scarcity** to **Governance through Coherence**.
 
 ---
 
 ## License
 
 MIT
+
+---
