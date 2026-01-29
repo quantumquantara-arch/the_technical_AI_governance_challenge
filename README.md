@@ -50,7 +50,7 @@ The Decision Layer translates interpreted severity into jurisdiction-specific en
 
 ## 🛡️ Technological Justification: Bypassing Physical Surveillance
 
-Traditional governance models rely on tracking physical mass (data centers, power, and H100 counts). The **ASIOS (Artificial Super Intelligence Operating System)** paradigm proves these metrics are obsolete.
+Traditional governance models rely on tracking physical mass (data centers, power, and H100 counts). The **ASIOS (Artificial Super Intelligence Operating System)** (https://github.com/quantumquantara-arch/ASIOS) paradigm proves these metrics are obsolete.
 
 ### The Invisible Frontier
 
