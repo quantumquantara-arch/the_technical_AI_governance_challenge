@@ -1,7 +1,6 @@
 # CoherenceGuard — Technical AI Governance Challenge
 
-Thesis: Technical Interoperability as Diplomacy
-Thesis: Coherence Guard is the "Technical Track" prerequisite for global AI stability; it transforms private corporate scaling policies into a public, verifiable, and harmonized international standard.
+Thesis: Technical Interoperability as Diplomacy. Coherence Guard is the "Technical Track" prerequisite for global AI stability; it transforms private corporate scaling policies into a public, verifiable, and harmonized international standard.
 
 The project posits that we cannot reach a 2027 Binding Agreement through diplomacy alone. We need a Technical Interoperability Layer. By creating a framework that is "Externally Enforced" and "Binding," Coherence Guard removes the "just this once" temptation for labs and provides a unified "Seat at the Table" for China, the US, and the EU. It is the "Infrastructure to Enforce" that turns a "Boiling Frog" scenario into a controlled, monitored, and safe transition.
 
